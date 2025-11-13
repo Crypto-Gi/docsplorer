@@ -267,6 +267,75 @@ async def compare_versions(
 
 
 if __name__ == "__main__":
-    # Run with stdio transport (default for MCP)
-    print(f"Starting Qdrant RAG MCP Server with config: {config}")
-    mcp.run()
+    import argparse
+    import sys
+    
+    # Parse command line arguments
+    parser = argparse.ArgumentParser(
+        description="Docsplorer MCP Server - Semantic documentation search",
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+        epilog="""
+Examples:
+  # Run with stdio (default - for IDE integration)
+  python server.py
+  
+  # Run with HTTP (for n8n integration)
+  python server.py --transport http
+  
+  # Run with HTTP on custom port
+  python server.py --transport http --port 8080
+  
+  # Run with HTTP on specific host
+  python server.py --transport http --host 127.0.0.1 --port 8000
+        """
+    )
+    
+    parser.add_argument(
+        "--transport",
+        choices=["stdio", "http"],
+        default="stdio",
+        help="Transport protocol (default: stdio for IDE integration)"
+    )
+    
+    parser.add_argument(
+        "--host",
+        default="0.0.0.0",
+        help="Host to bind to for HTTP transport (default: 0.0.0.0)"
+    )
+    
+    parser.add_argument(
+        "--port",
+        type=int,
+        default=8000,
+        help="Port to bind to for HTTP transport (default: 8000)"
+    )
+    
+    args = parser.parse_args()
+    
+    print(f"Starting Docsplorer MCP Server with config: {config}")
+    print(f"Transport: {args.transport}")
+    
+    if args.transport == "stdio":
+        # Run with stdio transport (default for IDE integration)
+        print("Mode: stdio (for IDE integration - Windsurf, Claude Desktop)")
+        mcp.run()
+    
+    elif args.transport == "http":
+        # Run with HTTP transport (for n8n integration)
+        print(f"Mode: HTTP server on {args.host}:{args.port}")
+        print(f"Access at: http://{args.host if args.host != '0.0.0.0' else 'localhost'}:{args.port}")
+        print("\nFor n8n integration, use:")
+        print(f'  URL: http://localhost:{args.port}/mcp')
+        print("\nPress Ctrl+C to stop the server")
+        
+        try:
+            import uvicorn
+            app = mcp.http_app()
+            uvicorn.run(app, host=args.host, port=args.port)
+        except ImportError:
+            print("\nError: uvicorn is required for HTTP transport")
+            print("Install it with: pip install uvicorn[standard]")
+            sys.exit(1)
+        except KeyboardInterrupt:
+            print("\n\nShutting down server...")
+            sys.exit(0)
