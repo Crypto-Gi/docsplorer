@@ -1,15 +1,28 @@
 version: '3.8'
 
 services:
-  mcp-server:
+  docsplorer:
     build: .
-    container_name: qdrant-mcp-server
+    container_name: docsplorer-mcp
+    ports:
+      - "8505:8505"
     env_file:
       - .env
     environment:
-      # Override .env if needed
+      # Transport mode (http or stdio)
+      - TRANSPORT=${TRANSPORT:-http}
+      - HOST=0.0.0.0
+      - PORT=8505
+      # API Configuration
       - API_URL=${API_URL:-http://host.docker.internal:8001}
-      - OLLAMA_URL=${OLLAMA_URL:-http://host.docker.internal:11434}
-    stdin_open: true
-    tty: true
-    network_mode: host
+      - API_KEY=${API_KEY}
+      - QDRANT_COLLECTION=${QDRANT_COLLECTION:-content}
+      - DEFAULT_LIMIT=${DEFAULT_LIMIT:-1}
+      - DEFAULT_CONTEXT_WINDOW=${DEFAULT_CONTEXT_WINDOW:-5}
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8505/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
