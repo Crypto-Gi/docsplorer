@@ -41,7 +41,7 @@ curl -LsSf https://astral.sh/uv/install.sh | sh
 ### Step 2: Clone Repository
 
 ```bash
-git clone https://github.com/Crypto-Gi/qdrant-semantic-search-api.git
+git clone https://github.com/Crypto-Gi/docsplorer.git
 cd docsplorer
 ```
 
@@ -122,7 +122,7 @@ pip install fastmcp httpx python-dotenv
 ### Step 2: Clone Repository
 
 ```bash
-git clone https://github.com/Crypto-Gi/qdrant-semantic-search-api.git
+git clone https://github.com/Crypto-Gi/docsplorer.git
 cd docsplorer
 ```
 
@@ -168,7 +168,7 @@ Edit `mcp_config.json`:
 ### Step 1: Navigate to Docsplorer Directory
 
 ```bash
-cd /home/mir/projects/docsplorer
+cd docsplorer
 ```
 
 ### Step 2: Configure Environment
@@ -188,7 +188,7 @@ API_URL=http://172.17.0.1:8001  # Linux
 ### Step 3: Build Docker Image
 
 ```bash
-docker build -t qdrant-mcp-server .
+docker build -t docsplorer-mcp .
 ```
 
 ### Step 4: Add to Windsurf
@@ -424,12 +424,11 @@ Expected: Relevant passages with page context.
 ### Update to Latest Version
 
 ```bash
-cd qdrant-semantic-search-api
-git pull origin master
+cd docsplorer
+git pull origin main
 
 # If using Docker, rebuild:
-cd mcp-server
-docker build -t qdrant-mcp-server .
+docker build -t docsplorer-mcp .
 
 # Restart Windsurf
 ```
@@ -441,8 +440,8 @@ docker build -t qdrant-mcp-server .
 1. **Check logs**: Windsurf > View > Output > MCP
 2. **Test API directly**: `curl http://localhost:8001/docs`
 3. **Verify config**: Check `mcp_config.json` syntax
-4. **Review docs**: See [DEPLOYMENT.md](DEPLOYMENT.md) for detailed info
-5. **GitHub Issues**: https://github.com/Crypto-Gi/qdrant-semantic-search-api/issues
+4. **Review docs**: See other guides in docs/ folder
+5. **GitHub Issues**: https://github.com/Crypto-Gi/docsplorer/issues
 
 ---
 
@@ -451,9 +450,9 @@ docker build -t qdrant-mcp-server .
 After installation:
 
 1. Read [TOOL_USAGE.md](TOOL_USAGE.md) for tool usage instructions
-2. Review [DEPLOYMENT.md](DEPLOYMENT.md) for advanced configuration
-3. Check [README.md](README.md) for architecture overview
-4. See [DESIGN.md](DESIGN.md) for technical details
+2. Review [HTTP_QUICKSTART.md](HTTP_QUICKSTART.md) for HTTP mode
+3. Check [N8N_INTEGRATION.md](N8N_INTEGRATION.md) for n8n workflows
+4. See [DOCKER_GUIDE.md](DOCKER_GUIDE.md) for Docker deployment
 
 ---
 
