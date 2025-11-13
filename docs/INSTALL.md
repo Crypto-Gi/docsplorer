@@ -1,6 +1,6 @@
 # Docsplorer MCP Server - Installation Guide
 
-Complete installation instructions for Windsurf IDE with three deployment options.
+Complete installation instructions for all deployment options and transport modes.
 
 ---
 
@@ -14,6 +14,19 @@ Before installing, ensure you have:
    - **uv** (for uvx method) - Recommended
    - **Python 3.11+** and **pip** (for fastmcp method)
    - **Docker** (for Docker method)
+
+---
+
+## 🎯 **Choose Your Transport Mode**
+
+### **Option A: stdio Transport**
+Standard input/output communication - ideal for IDE integration and local development
+
+### **Option B: HTTP Transport** 
+HTTP-based communication - ideal for web services, APIs, and remote access
+
+### **Option C: Docker**
+Containerized deployment with configurable transport mode
 
 ---
 

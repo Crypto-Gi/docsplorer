@@ -90,11 +90,15 @@ Trigger → MCP Client → Process → Output
 
 | File | Purpose |
 |------|---------|
-| `HTTP_QUICKSTART.md` | HTTP mode quick start |
-| `N8N_INTEGRATION.md` | Complete n8n guide |
-| `DOCKER_GUIDE.md` | Docker deployment |
-| `SSL_GUIDE.md` | HTTPS setup |
-| `TEST_REPORT.md` | Testing results |
+| [`docs/HTTP_QUICKSTART.md`](docs/HTTP_QUICKSTART.md) | HTTP mode quick start |
+| [`docs/N8N_INTEGRATION.md`](docs/N8N_INTEGRATION.md) | Complete n8n guide |
+| [`docs/DOCKER_GUIDE.md`](docs/DOCKER_GUIDE.md) | Docker deployment |
+| [`docs/SSL_GUIDE.md`](docs/SSL_GUIDE.md) | HTTPS setup |
+| [`docs/INSTALL.md`](docs/INSTALL.md) | Installation guide |
+| [`docs/TOOL_USAGE.md`](docs/TOOL_USAGE.md) | Tool documentation |
+| [`docs/TESTING_SUMMARY.md`](docs/TESTING_SUMMARY.md) | Testing results |
+| [`docs/TEST_REPORT.md`](docs/TEST_REPORT.md) | Test report |
+| [`docs/DISTRIBUTION_GUIDE.md`](docs/DISTRIBUTION_GUIDE.md) | Distribution guide |
 
 ## 🛠️ **Environment Setup**
 
