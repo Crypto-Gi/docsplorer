@@ -279,14 +279,14 @@ Examples:
   # Run with stdio (default - for IDE integration)
   python server.py
   
-  # Run with HTTP (for n8n integration)
+  # Run with HTTP (for n8n integration) - default port 8505
   python server.py --transport http
   
   # Run with HTTP on custom port
   python server.py --transport http --port 8080
   
-  # Run with HTTP on specific host
-  python server.py --transport http --host 127.0.0.1 --port 8000
+  # Run with HTTP on specific host and port
+  python server.py --transport http --host 127.0.0.1 --port 8505
         """
     )
     
@@ -306,8 +306,8 @@ Examples:
     parser.add_argument(
         "--port",
         type=int,
-        default=8000,
-        help="Port to bind to for HTTP transport (default: 8000)"
+        default=8505,
+        help="Port to bind to for HTTP transport (default: 8505)"
     )
     
     args = parser.parse_args()
